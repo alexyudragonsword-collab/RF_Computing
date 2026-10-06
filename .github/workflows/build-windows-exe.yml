@@ -1,0 +1,69 @@
+name: Build Windows exe
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "wise_repro/**"
+      - ".github/workflows/build-windows-exe.yml"
+    tags: ["v*"]
+  workflow_dispatch:
+
+concurrency:
+  group: build-windows-exe-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write   # only used to attach the exe to a release on v* tags
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: wise_repro/gui/requirements-build.txt
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r wise_repro/gui/requirements-build.txt
+
+      - name: Build one-file exe
+        working-directory: wise_repro/gui
+        run: pyinstaller --noconfirm --clean wise_demo.spec
+
+      - name: Smoke test - render the three pages offscreen
+        shell: pwsh
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: |
+          $exe = Resolve-Path wise_repro/gui/dist/WISE-Demo.exe
+          "{0:N1} MB" -f ((Get-Item $exe).Length / 1MB)
+          $shots = Join-Path $PWD "smoke-shots"
+          $p = Start-Process -FilePath $exe -ArgumentList "--screenshots", "`"$shots`"" -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "WISE-Demo.exe exited with code $($p.ExitCode)" }
+          $n = (Get-ChildItem $shots -Filter *.png).Count
+          if ($n -ne 3) { throw "expected 3 screenshots, found $n" }
+          Get-ChildItem $shots
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: WISE-Demo-windows-exe
+          path: wise_repro/gui/dist/WISE-Demo.exe
+          if-no-files-found: error
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smoke-test-screenshots
+          path: smoke-shots
+
+      - name: Attach exe to the release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: wise_repro/gui/dist/WISE-Demo.exe

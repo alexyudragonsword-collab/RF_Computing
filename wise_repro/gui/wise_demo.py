@@ -23,14 +23,18 @@ import matplotlib
 matplotlib.use("QtAgg")
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg  # noqa: E402
 from matplotlib.figure import Figure  # noqa: E402
-from scipy.io import loadmat  # noqa: E402
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(HERE)
-sys.path.insert(0, ROOT)
+if getattr(sys, "frozen", False):          # PyInstaller one-file build: data is unpacked to _MEIPASS
+    ROOT = sys._MEIPASS
+    HERE = os.path.join(ROOT, "gui")
+else:
+    HERE = os.path.dirname(os.path.abspath(__file__))
+    ROOT = os.path.dirname(HERE)
+    sys.path.insert(0, ROOT)
 import wise_sim as ws  # noqa: E402
 
-MODEL_PATH = os.path.join(ROOT, "results", "model", "model_accMax.mat")
+MODEL_NPZ = os.path.join(HERE, "model_fc3.npz")                      # written by make_demo_data.py
+MODEL_MAT = os.path.join(ROOT, "results", "model", "model_accMax.mat")  # fallback, needs scipy
 CURVE_PATH = os.path.join(ROOT, "results", "dataset_mnist_fc3.json")
 DEMO_PATH = os.path.join(HERE, "demo_mnist.npz")
 
@@ -714,7 +718,11 @@ class MnistTab(QtWidgets.QWidget):
 # ----------------------------------------------------------------------------- main window
 
 def load_model():
-    m = loadmat(MODEL_PATH)
+    if os.path.exists(MODEL_NPZ):
+        m = dict(np.load(MODEL_NPZ))
+    else:
+        from scipy.io import loadmat
+        m = loadmat(MODEL_MAT)
     fc, k = [], 1
     while f"Matrix_{k}" in m:
         fc.append(m[f"Matrix_{k}"].astype(complex).T)

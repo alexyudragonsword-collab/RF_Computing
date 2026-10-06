@@ -113,6 +113,18 @@ Windows 和 macOS 上 PySide6 自带所需的图形库。精简版 Linux 如果�
 
 所有仿真都在后台线程里跑，界面不会卡住。单张推理约 0.25 秒，50 张批量评估约 2 秒。每次运行都会重新抽取噪声，所以低功率下同一张图的结果会变化。
 
+### Windows 单文件 exe
+
+仓库里的 GitHub Actions 工作流会在 Windows 上把演示程序打包成一个独立的 `WISE-Demo.exe`，不需要安装 Python。
+它在每次推送到 main 且改动了 `wise_repro/` 时运行，也可以在 Actions 页面手动触发。
+
+- **下载**：打开 Actions 页面里最新一次 "Build Windows exe" 运行，在 Artifacts 里下载 `WISE-Demo-windows-exe`。
+- **正式发布**：推送 `v` 开头的标签，例如 `v1.0`，exe 会自动附加到对应的 Release 上。
+- **构建内容**：打包配置是 `gui/wise_demo.spec`，固定版本的依赖在 `gui/requirements-build.txt`。exe 只带 PySide6 核心模块、numpy 和 matplotlib，不含 scipy 和 torch。
+- **冒烟测试**：构建后会离屏运行一次 exe，生成三页截图，截图也作为 Artifacts 上传。
+
+exe 是单文件形式，每次启动都要先解压到临时目录，所以首次打开需要等几秒。
+
 截图在 `gui/screenshots/`，可以用下面的命令离屏重新生成：
 
 ```bash
