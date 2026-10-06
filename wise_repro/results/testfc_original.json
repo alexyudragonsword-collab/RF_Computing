@@ -1,0 +1,10 @@
+{
+ "powerRF_dBm": -37,
+ "snr_dB": 34.848554539300665,
+ "wave_time_s": 0.0464,
+ "pearson_mean": 0.9864068457917627,
+ "rmse_mean": 0.08252421325738017,
+ "phase_spread_rad": 0.22923605306354647,
+ "tests": 20,
+ "size": 100
+}

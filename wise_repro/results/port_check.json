@@ -1,0 +1,47 @@
+{
+ "discrete_exact_bins": [
+  4
+ ],
+ "noiseless": [
+  {
+   "encMode": "time",
+   "cpRate": -1,
+   "padRate": 0.333,
+   "pearson": 0.9797210129683528,
+   "rmse": 0.09490990736928095,
+   "phase_std_rad": 0.2368288328029085
+  },
+  {
+   "encMode": "time",
+   "cpRate": 10,
+   "padRate": 3,
+   "pearson": 0.9811889512950562,
+   "rmse": 0.09102153559254707,
+   "phase_std_rad": 0.2295404387720437
+  },
+  {
+   "encMode": "freq",
+   "cpRate": -1,
+   "padRate": 0.333,
+   "pearson": 0.9991393126574932,
+   "rmse": 0.021347511260607393,
+   "phase_std_rad": 0.10365687820200746
+  },
+  {
+   "encMode": "freq",
+   "cpRate": 4,
+   "padRate": 1,
+   "pearson": 0.9999194816894876,
+   "rmse": 0.0065300273788907555,
+   "phase_std_rad": 0.017484185669739864
+  },
+  {
+   "encMode": "freq",
+   "cpRate": 10,
+   "padRate": 3,
+   "pearson": 0.9999859792545088,
+   "rmse": 0.0027266246961527847,
+   "phase_std_rad": 0.008488895214351058
+  }
+ ]
+}

@@ -1,0 +1,160 @@
+{
+ "model": "MNIST_size14_FC3",
+ "mode": "fast",
+ "encMode": "time",
+ "samples_analog": 10000,
+ "samples_digital": 10000,
+ "acc_digital": 0.9762,
+ "acc_digital_on_subset": 0.9762,
+ "mac_num": 14912,
+ "powerLO_dBm": -3.56,
+ "rows": [
+  {
+   "powerRF_dBm": -70.0,
+   "acc_analog": 0.9717,
+   "agree_with_digital": 0.9906,
+   "emac_J": 2.0375536480686694e-18,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -72.0,
+   "acc_analog": 0.971,
+   "agree_with_digital": 0.988,
+   "emac_J": 1.2856094390213374e-18,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -74.0,
+   "acc_analog": 0.9694,
+   "agree_with_digital": 0.9852,
+   "emac_J": 8.111647176835735e-19,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -76.0,
+   "acc_analog": 0.9653,
+   "agree_with_digital": 0.9779,
+   "emac_J": 5.118103362056541e-19,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -78.0,
+   "acc_analog": 0.9541,
+   "agree_with_digital": 0.9647,
+   "emac_J": 3.229304906098343e-19,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -80.0,
+   "acc_analog": 0.9346,
+   "agree_with_digital": 0.9452,
+   "emac_J": 2.0375536480686694e-19,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -82.0,
+   "acc_analog": 0.886,
+   "agree_with_digital": 0.8936,
+   "emac_J": 1.2856094390213399e-19,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -84.0,
+   "acc_analog": 0.802,
+   "agree_with_digital": 0.807,
+   "emac_J": 8.111647176835734e-20,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -86.0,
+   "acc_analog": 0.6583,
+   "agree_with_digital": 0.6614,
+   "emac_J": 5.11810336205654e-20,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -88.0,
+   "acc_analog": 0.4704,
+   "agree_with_digital": 0.4724,
+   "emac_J": 3.229304906098336e-20,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -90.0,
+   "acc_analog": 0.2661,
+   "agree_with_digital": 0.2666,
+   "emac_J": 2.0375536480686694e-20,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -92.0,
+   "acc_analog": 0.1529,
+   "agree_with_digital": 0.1535,
+   "emac_J": 1.2856094390213399e-20,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -94.0,
+   "acc_analog": 0.119,
+   "agree_with_digital": 0.1186,
+   "emac_J": 8.111647176835736e-21,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -96.0,
+   "acc_analog": 0.1002,
+   "agree_with_digital": 0.1018,
+   "emac_J": 5.1181033620565405e-21,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -98.0,
+   "acc_analog": 0.1042,
+   "agree_with_digital": 0.1054,
+   "emac_J": 3.2293049060983363e-21,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -100.0,
+   "acc_analog": 0.1041,
+   "agree_with_digital": 0.1041,
+   "emac_J": 2.0375536480686696e-21,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -102.0,
+   "acc_analog": 0.1002,
+   "agree_with_digital": 0.0991,
+   "emac_J": 1.2856094390213402e-21,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -104.0,
+   "acc_analog": 0.0973,
+   "agree_with_digital": 0.0983,
+   "emac_J": 8.111647176835737e-22,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -106.0,
+   "acc_analog": 0.0989,
+   "agree_with_digital": 0.0996,
+   "emac_J": 5.118103362056541e-22,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -108.0,
+   "acc_analog": 0.1013,
+   "agree_with_digital": 0.1004,
+   "emac_J": 3.2293049060983354e-22,
+   "wave_time_s": 0.030383999999999998
+  },
+  {
+   "powerRF_dBm": -110.0,
+   "acc_analog": 0.0961,
+   "agree_with_digital": 0.0961,
+   "emac_J": 2.0375536480686694e-22,
+   "wave_time_s": 0.030383999999999998
+  }
+ ]
+}
