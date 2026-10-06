@@ -94,6 +94,31 @@ TestFC 的原始设置：100×100 随机复数矩阵，20 组，射频功率 −
 
 功率足够时，模拟推理比数字推理低约 0.5 个百分点，这与上面 time 模式的固有误差一致。功率低于 −92 dBm 后退化为随机猜测。完整曲线见 `results/dataset_mnist_fc3.png`。
 
+## 演示程序
+
+`gui/wise_demo.py` 是一个 PySide6 桌面程序，用于现场演示。它只依赖本目录的文件：仿真代码、训练好的模型、预先跑好的功率曲线，以及从测试集抽出的 200 张图。
+
+```bash
+pip install -r gui/requirements.txt
+python gui/wise_demo.py
+```
+
+Windows 和 macOS 上 PySide6 自带所需的图形库。精简版 Linux 如果报缺少 `libEGL.so.1`，需要先装系统库，例如 Ubuntu 上执行 `apt install libegl1`。
+
+| 页面 | 内容 | 演示建议 |
+|---|---|---|
+| 原理演示 | x 的稀疏梳状频谱、展平倒序的 W、混频后的频谱卷积，以及读出窗口 | 点击读出窗口里不同的 y，看每组权重里被选中的是哪一个 |
+| 单层仿真 | TestFC 的移植：随机复数矩阵走模拟链路，画散点图和相位误差分布 | 先用 time 模式跑一次，再切到 freq 模式对比，误差会明显变小 |
+| MNIST 推理 | 单张图的数字推理和模拟推理对比，以及功率与准确率曲线 | 把功率从 −70 dBm 拖到 −95 dBm，看预测逐渐失效；点"批量评估"在曲线上加一个实测点 |
+
+所有仿真都在后台线程里跑，界面不会卡住。单张推理约 0.25 秒，50 张批量评估约 2 秒。每次运行都会重新抽取噪声，所以低功率下同一张图的结果会变化。
+
+截图在 `gui/screenshots/`，可以用下面的命令离屏重新生成：
+
+```bash
+python gui/wise_demo.py --screenshots gui/screenshots
+```
+
 ## 发现的原代码问题
 
 - **仿真脚本选的信道模型被注释掉了。** `main_dataset.m` 设置 `transMode = "fast"`，但 `Tx2Rx_all.m` 里 fast 分支被注释，原样运行会失败。移植版把它接了回去。
